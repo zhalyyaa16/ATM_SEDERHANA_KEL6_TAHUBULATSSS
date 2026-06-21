@@ -3,8 +3,7 @@ import streamlit as st
 def render(atm):
     akun = st.session_state.akun_login
 
-    st.markdown("🏦 Setor Tunai")
-    st.info("Minimal transaksi Rp50.000")
+    st.markdown("💸 Setor Tunai")
 
     jumlah = st.number_input(
         "Masukkan jumlah setor:",
@@ -13,25 +12,24 @@ def render(atm):
     )
 
     if st.button("Setor Tunai", use_container_width=True):
-        if jumlah < 50000:
-            st.error("❌ Minimal transaksi Rp50.000")
-        elif jumlah % 50000 != 0:
+
+        if jumlah % 50000 != 0:
             st.error("❌ Setoran harus kelipatan Rp50.000")
+
+        elif jumlah <= 0:
+            st.error("❌ Nominal harus lebih dari Rp0")
+
         else:
             ok, pesan = atm.setor(akun, jumlah)
+
             if ok:
-                st.success(f"✅ {pesan}")
-                pilihan = st.radio(
-                    "Apa yang ingin kamu lakukan selanjutnya?",
-                    ["Lanjut Transaksi", "Keluar"],
-                    horizontal=True
-                )
-                if pilihan == "Lanjut Transaksi":
-                    st.session_state.page = "menu"
-                    st.rerun()
-                elif pilihan == "Keluar":
-                    st.session_state.page = "beranda"
-                    st.rerun()
+                st.session_state.transaksi = {
+                    "jenis": "Setor Tunai",
+                    "nominal": jumlah,
+                    "saldo": akun.saldo,
+                }
+                st.session_state.page = "transaksi_berhasil"
+                st.rerun()
             else:
                 st.error(f"❌ {pesan}")
 
