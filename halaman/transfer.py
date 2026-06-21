@@ -4,7 +4,6 @@ def render(atm):
     akun = st.session_state.akun_login
 
     st.markdown("💸 Transfer Antar Rekening")
-    st.info(f"💳 Saldo kamu: Rp {akun.saldo:,}")
     st.divider()
 
     with st.form("form_transfer"):
@@ -16,12 +15,8 @@ def render(atm):
         nominal = st.number_input(
             "💰 Nominal Transfer",
             min_value=0,
-            step=50000
-        )
-
-        catatan = st.text_input(
-            "📝 Catatan (opsional)",
-            placeholder="Contoh: Bayar utang"
+            step=50000,
+            help="Minimal transfer Rp 100.000 | Maksimal Rp 30.000.000"
         )
 
         kirim = st.form_submit_button(
@@ -36,6 +31,12 @@ def render(atm):
         elif nominal <= 0:
             st.warning("⚠️ Nominal harus lebih dari Rp0.")
 
+        elif nominal < 100_000:
+            st.warning("⚠️ Minimal transfer adalah Rp 100.000.")
+
+        elif nominal > 30_000_000:
+            st.error("❌ Maksimal transfer adalah Rp 30.000.000 per transaksi.")
+
         elif nominal > akun.saldo:
             st.error("❌ Saldo tidak mencukupi.")
 
@@ -49,9 +50,6 @@ def render(atm):
             if ok:
                 st.success(f"✅ {pesan}")
                 st.balloons()
-
-                if catatan:
-                    st.caption(f"📝 Catatan: {catatan}")
 
             else:
                 st.error(f"❌ {pesan}")
