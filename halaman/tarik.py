@@ -1,7 +1,7 @@
 import streamlit as st
 from data import akun
 
-def tarik(user):
+def render(user):
     jumlah = st.number_input("Masukkan jumlah tarik:", min_value=0, step=50000)
     if st.button("Tarik"):
         if jumlah % 50000 != 0:
