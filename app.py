@@ -9,7 +9,7 @@ if "user" not in st.session_state:
     st.session_state.user = None
 
 st.title("BCI")
-st.subheader("Mobile Banking")
+st.subheader("Modern Banking")
 
 no_rekening = st.text_input("Masukkan nomor rekening: ")
 pin = st.text_input("Masukkan PIN: ", type="password")
