@@ -4,7 +4,6 @@ def render(atm):
     akun = st.session_state.akun_login
 
     st.markdown("💸 Transfer Antar Rekening")
-    st.divider()
 
     with st.form("form_transfer"):
         tujuan = st.text_input(
@@ -52,7 +51,8 @@ def render(atm):
                 st.session_state.transaksi = {
                     "jenis": "Transfer",
                     "nominal": nominal,
-                    "saldo": akun.saldo
+                    "saldo": akun.saldo,
+                    "tujuan": tujuan
                 }
 
                 st.session_state.page = "transaksi_berhasil"

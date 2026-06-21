@@ -10,6 +10,11 @@ def render(atm):
     st.write("### Jenis Transaksi")
     st.write(data["jenis"])
 
+    if "tujuan" in data:
+        st.write("### Rekening Tujuan")
+        st.write(data["tujuan"])
+
+
     st.write("### Nominal")
     st.write(f"Rp {data['nominal']:,.0f}")
 

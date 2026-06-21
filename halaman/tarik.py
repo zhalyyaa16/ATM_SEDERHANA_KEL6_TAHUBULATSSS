@@ -37,7 +37,7 @@ def render(atm):
                 st.session_state.transaksi = {
                     "jenis": "Tarik Tunai",
                     "nominal": jumlah,
-                    "saldo": akun.saldo
+                    "saldo": akun.saldo,
                 }
 
                 st.session_state.page = "transaksi_berhasil"
