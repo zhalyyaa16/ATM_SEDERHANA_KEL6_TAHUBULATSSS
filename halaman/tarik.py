@@ -4,7 +4,6 @@ def render(atm):
     akun = st.session_state.akun_login
 
     st.markdown("💸 Tarik Tunai")
-    st.info(f"💳 Saldo kamu: Rp {akun.saldo:,}")
 
     jumlah = st.number_input(
         "Masukkan jumlah tarik:",
