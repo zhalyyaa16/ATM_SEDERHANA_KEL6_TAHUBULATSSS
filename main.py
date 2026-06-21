@@ -1,4 +1,3 @@
-"""Aplikasi ATM berbasis Streamlit dengan layout portrait & navigasi halaman."""
 import streamlit as st
 
 from atm import ATM
@@ -9,12 +8,9 @@ st.set_page_config(page_title="ATM BCI", page_icon="🏧", layout="centered")
 
 load_css("style.css")
 
-
-# ---------------- INISIALISASI ----------------
 @st.cache_resource
 def get_atm():
     return ATM()
-
 
 atm = get_atm()
 
@@ -23,10 +19,9 @@ if "akun_login" not in st.session_state:
 if "page" not in st.session_state:
     st.session_state.page = "menu"
 if "saldo_visible" not in st.session_state:
-    st.session_state.saldo_visible = True  # default: saldo terlihat
+    st.session_state.saldo_visible = True 
 
 
-# ---------------- ROUTER ----------------
 if st.session_state.akun_login is None:
     login.render(atm)
 else:
