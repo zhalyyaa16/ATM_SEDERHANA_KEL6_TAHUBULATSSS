@@ -48,8 +48,15 @@ def render(atm):
             )
 
             if ok:
-                st.success(f"✅ {pesan}")
-                st.balloons()
+
+                st.session_state.transaksi = {
+                    "jenis": "Transfer",
+                    "nominal": nominal,
+                    "saldo": akun.saldo
+                }
+
+                st.session_state.page = "transaksi_berhasil"
+                st.rerun()
 
             else:
                 st.error(f"❌ {pesan}")
@@ -60,5 +67,5 @@ def render(atm):
         "⬅️ Kembali ke Menu",
         use_container_width=True
     ):
-        st.session_state.page = "selesai"
+        st.session_state.page = "menu"
         st.rerun()
