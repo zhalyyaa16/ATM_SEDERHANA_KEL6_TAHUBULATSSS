@@ -1,5 +1,5 @@
 import streamlit as st
-from login import login
+from halaman.login import login
 from data import akun
 
 if "login" not in st.session_state:
