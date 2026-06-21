@@ -5,9 +5,15 @@ from helpers import kartu_saldo, goto
 def render(atm):
     akun = st.session_state.akun_login
 
-    st.markdown(f"#### 👋 Halo, {akun.nama}")
-    kartu_saldo(akun)
-    st.write("")
+    st.markdown(
+    f"""
+    ### 🏧 ATM BCI
+
+    👋 Selamat datang, **{akun.nama}**.
+
+    Silakan pilih layanan yang ingin digunakan.
+    """
+)
 
     menu_items = [
         ("💰", "Cek Saldo", "cek_saldo"),
