@@ -19,10 +19,10 @@ def render(atm):
             help="Minimal transfer Rp 100.000 | Maksimal Rp 30.000.000"
         )
 
-        kirim = st.form_submit_button(
+        kirim = st.form_submit_button(  
             "Transfer Sekarang",
             use_container_width=True
-        )
+        ) 
 
     if kirim:
         if not tujuan:
