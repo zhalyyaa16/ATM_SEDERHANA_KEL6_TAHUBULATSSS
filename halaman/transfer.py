@@ -34,8 +34,12 @@ def render(atm):
             st.warning("⚠️ Rekening tujuan tidak boleh kosong.")
 
         elif nominal <= 0:
+<<<<<<< HEAD
             st.warning("⚠️ Nominal harus lebih dari Rp0.")
 
+=======
+            st.warning("⚠️ Nominal harus lebih dari Rp 0.")
+>>>>>>> 0d761878135c4f8f2d7de5f137a405669dccbffe
         elif nominal > akun.saldo:
             st.error("❌ Saldo tidak mencukupi.")
 
