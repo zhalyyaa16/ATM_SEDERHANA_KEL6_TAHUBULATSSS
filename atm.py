@@ -1,4 +1,5 @@
 from data import akun as data_akun
+import data
 
 class Akun:
     def __init__(self, no_rekening, nama, pin, saldo):
@@ -13,13 +14,13 @@ class ATM:
     def __init__(self):
         self.akun = {}
 
-        for norek, data in data_akun.items():
-            self.akun[norek] = Akun(
-                no_rekening=norek,
+        for data in data_akun:
+            self.akun[data["no_rekening"]] = Akun(
+                no_rekening=data["no_rekening"],
                 nama=data["nama"],
                 pin=data["pin"],
                 saldo=data["saldo"]
-            )
+    )
 
     def login(self, no_rekening, pin):
         if (

@@ -2,7 +2,7 @@ import streamlit as st
 
 from atm import ATM
 from helpers import load_css
-from halaman import login, menu, cek_saldo, tarik, setor, transfer, riwayat
+from halaman import login, menu, cek_saldo, tarik, setor, transfer, riwayat, transaksi_berhasil
 
 st.set_page_config(page_title="ATM BCI", page_icon="🏧", layout="centered")
 
@@ -32,5 +32,6 @@ else:
         "setor": setor.render,
         "transfer": transfer.render,
         "riwayat": riwayat.render,
+        "transaksi_berhasil": transaksi_berhasil.render,
     }
     router.get(st.session_state.page, menu.render)(atm)

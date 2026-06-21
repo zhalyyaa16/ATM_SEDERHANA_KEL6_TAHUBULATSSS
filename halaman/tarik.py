@@ -4,7 +4,6 @@ def render(atm):
     akun = st.session_state.akun_login
 
     st.markdown("💸 Tarik Tunai")
-    st.info(f"💳 Saldo kamu: Rp {akun.saldo:,}")
 
     jumlah = st.number_input(
         "Masukkan jumlah tarik:",
@@ -34,9 +33,15 @@ def render(atm):
             )
 
             if ok:
-                st.success(
-                    f"✅ {pesan}\n\nSaldo sekarang: Rp {akun.saldo:,}"
-                )
+
+                st.session_state.transaksi = {
+                    "jenis": "Tarik Tunai",
+                    "nominal": jumlah,
+                    "saldo": akun.saldo,
+                }
+
+                st.session_state.page = "transaksi_berhasil"
+                st.rerun()
 
             else:
                 st.error(f"❌ {pesan}")
