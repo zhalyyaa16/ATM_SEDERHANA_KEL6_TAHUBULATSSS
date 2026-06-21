@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 def render(atm):
     st.subheader("📜 Riwayat Transaksi")
@@ -7,9 +8,30 @@ def render(atm):
 
     if len(akun.riwayat) == 0:
         st.info("Belum ada riwayat transaksi.")
+
     else:
-        for item in akun.riwayat:
-            st.write(item)
+        df = pd.DataFrame(akun.riwayat)
+
+        df.rename(
+            columns={
+                "jenis": "Jenis",
+                "tujuan": "Tujuan",
+                "dari": "Dari",
+                "nominal": "Nominal"
+            },
+            inplace=True
+        )
+
+        if "Nominal" in df.columns:
+            df["Nominal"] = df["Nominal"].apply(
+                lambda x: f"Rp {x:,.0f}".replace(",", ".")
+            )
+
+        st.dataframe(
+            df,
+            use_container_width=True,
+            hide_index=True
+        )
 
     st.divider()
 

@@ -34,9 +34,10 @@ class ATM:
     def setor(self, akun, nominal):
         akun.saldo += nominal
 
-        akun.riwayat.append(
-            f"Setor tunai Rp {nominal:,}"
-        )
+        akun.riwayat.append({
+        "jenis": "Setor Tunai",
+        "nominal": nominal
+    })
 
         return True, "Setor tunai berhasil"
 
@@ -47,7 +48,10 @@ class ATM:
         akun.saldo -= nominal
 
         akun.riwayat.append(
-            f"Tarik tunai Rp {nominal:,}"
+            {
+                "jenis": "Tarik Tunai",
+                "nominal": nominal
+            }
         )
 
         return True, "Tarik tunai berhasil"
@@ -64,12 +68,18 @@ class ATM:
         pengirim.saldo -= nominal
         penerima.saldo += nominal
 
-        pengirim.riwayat.append(
-            f"Transfer ke {penerima.nama} Rp {nominal:,}"
-        )
+        pengirim.riwayat.append({
+             "jenis": "Transfer Keluar",
+             "tujuan": penerima.nama,
+             "nominal": nominal
+         })
 
         penerima.riwayat.append(
-            f"Transfer dari {pengirim.nama} Rp {nominal:,}"
+            {
+                "jenis": "Transfer Masuk",
+                "dari": pengirim.nama,
+                "nominal": nominal
+            }
         )
 
         return True, f"Transfer berhasil ke {penerima.nama}"

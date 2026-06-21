@@ -1,2 +1,13 @@
-# ATM_Sederhana.st
-buat UAS Alpro Sems 2
+# ATM BCI
+
+Proyek UAS Algoritma dan Pemrograman
+
+Fitur:
+- Login
+- Cek Saldo
+- Setor Tunai
+- Tarik Tunai
+- Transfer
+- Riwayat Transaksi
+
+Dibuat menggunakan Python dan Streamlit.
