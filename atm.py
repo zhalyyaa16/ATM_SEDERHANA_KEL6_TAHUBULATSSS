@@ -1,5 +1,4 @@
 from data import akun as data_akun
-import data
 
 class Akun:
     def __init__(self, no_rekening, nama, pin, saldo):
