@@ -40,7 +40,7 @@ def render(atm):
                     st.session_state.transfer_step = "input_nominal"
                     st.rerun()
                 else:
-                    st.error("❌ Nomor rekening tidak ditemukan!")
+                    st.error("❌ Nomor rekening yang dimasukkan tidak ditemukan!")
 
     elif st.session_state.transfer_step == "input_nominal":
         rek_target = st.session_state.rek_tujuan_valid
@@ -68,7 +68,7 @@ def render(atm):
             elif nominal > 30_000_000:
                 st.error("❌ Maksimal transfer adalah Rp 30.000.000 per transaksi.")
             elif nominal > akun.saldo:
-                st.error("❌ Saldo tidak mencukupi.")
+                st.error("❌ Saldo anda tidak mencukupi.")
             else:
 
                 ok, pesan = atm.transfer(akun, rek_target, nominal)
